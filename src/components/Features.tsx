@@ -12,7 +12,7 @@ export default function Features() {
             <div className="absolute -top-10 -left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10"></div>
             {/* Remplace par ta capture d'écran réelle de la prise de note */}
             <img 
-              src="/public/noteverset.png" 
+              src="/noteverset.png" 
               alt="Interface Scriptures Notes - Prise de notes bibliques intelligente" 
               className="rounded-[2.5rem] shadow-2xl border-[10px] border-[#F2F2F7] max-w-md mx-auto" 
             />

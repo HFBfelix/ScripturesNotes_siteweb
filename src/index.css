@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    /* Utilise les variables background et foreground définies dans ta config */
+    @apply bg-background text-foreground antialiased;
+    /* On force la police système la plus propre (Apple / Inter) */
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer components {
+  /* La carte blanche standard de ton app : Ultra propre et arrondie */
+  .app-card {
+    @apply bg-white rounded-[2rem] shadow-apple border border-border/50 p-8 transition-all duration-300;
+  }
+
+  /* L'effet de liste que l'on voit dans ton menu Jeux */
+  .app-list-item {
+    @apply border-b border-border py-5 flex items-center justify-between last:border-0 hover:bg-black/5 transition-colors px-4;
+  }
+
+  /* Bouton principal avec ton bleu officiel #2A528A */
+  .btn-primary {
+    @apply bg-primary text-white px-8 py-4 rounded-full font-bold shadow-button active:scale-95 transition-all inline-flex items-center justify-center;
+  }
+
+  /* Titre de section pour la lisibilité */
+  .section-title {
+    @apply text-3xl md:text-4xl font-black text-foreground tracking-tight mb-6;
+  }
+}

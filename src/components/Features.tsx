@@ -9,13 +9,30 @@ export default function Features() {
         {/* PARTIE 1 : LA PRISE DE NOTES (LA PROMESSE DE MÉDITATION) */}
         <div className="grid md:grid-cols-2 gap-16 items-center mb-40">
           <div className="relative animate-fade-in-up">
-            <div className="absolute -top-10 -left-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl -z-10"></div>
-            {/* Remplace par ta capture d'écran réelle de la prise de note */}
-            <img 
-              src="/noteverset.png" 
-              alt="Interface Scriptures Notes - Prise de notes bibliques intelligente" 
-              className="rounded-[2.5rem] shadow-2xl border-[10px] border-[#F2F2F7] max-w-md mx-auto" 
-            />
+          <div className="relative group">
+  {/* Cercle de fond ajusté pour éviter le débordement horizontal */}
+  <div className="absolute -top-10 -left-10 w-40 h-40 md:w-64 md:h-64 bg-primary/5 rounded-full blur-3xl -z-10 overflow-hidden"></div>
+  
+  <img 
+    src="/noteverset.png" 
+    alt="Interface Scriptures Notes - Prise de notes bibliques intelligente" 
+    className="
+      w-full 
+      max-w-[320px] 
+      md:max-w-md 
+      mx-auto 
+      rounded-[2rem] 
+      md:rounded-[2.5rem] 
+      shadow-2xl 
+      border-[6px] 
+      md:border-[10px] 
+      border-[#F2F2F7] 
+      transition-transform 
+      duration-500 
+      group-hover:scale-[1.02]
+    "
+  />
+</div>
             <div className="absolute -bottom-8 -right-8 bg-primary text-white p-6 rounded-[2rem] shadow-2xl hidden lg:block animate-float">
               <div className="flex items-center gap-3 mb-2">
                 <BookOpen size={20} />

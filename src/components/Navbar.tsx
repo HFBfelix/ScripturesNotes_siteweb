@@ -34,7 +34,7 @@ export default function Navbar({ isScrolled }: { isScrolled: boolean }) {
           onClick={handleDownloadClick}
           className="bg-[#2A528A] text-white px-6 py-2 rounded-full font-bold text-sm shadow-md hover:opacity-90 transition-all active:scale-95"
         >
-          TÉLÉCHARGER
+          S'INSCRIRE
         </button>
       </div>
     </nav>

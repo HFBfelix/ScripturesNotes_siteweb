@@ -97,10 +97,10 @@ export default function PrivacyPolicy() {
             <h2 className="text-xl font-black text-[#1C1C1E] uppercase italic mb-4">6. Contact</h2>
             <p className="text-gray-600 mb-2 font-bold">Responsable de la protection des données :</p>
             <a 
-              href="mailto:hfentreprises@gmail.com" 
+              href="mailto:contact@scripturesnotes.com" 
               className="text-primary font-black hover:underline transition-all"
             >
-              hfentreprises@gmail.com
+              contact@scripturesnotes.com
             </a>
           </section>
 

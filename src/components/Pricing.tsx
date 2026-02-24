@@ -14,7 +14,7 @@ export default function Pricing() {
           </h2>
           <p className="text-slate-400 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
             Profitez de toutes les fonctionnalités gratuitement pendant notre phase de lancement. 
-            Dans 6 mois, nous passerons à un modèle freemium accessible à tous.
+            D'ici quelques mois, nous passerons à un modèle freemium accessible à tous.
           </p>
         </div>
 
@@ -53,7 +53,7 @@ export default function Pricing() {
           {/* CARTE DROITE : PREMIUM (0,99€) */}
           <div className="p-10 rounded-[2.5rem] border-2 border-[#FBBF24] bg-[#1E293B]/30 flex flex-col relative">
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#FBBF24] text-slate-900 px-6 py-1 rounded-full text-sm font-bold shadow-lg">
-              Dans 6 mois
+              Prochainement
             </div>
             
             <div className="flex items-center gap-4 mb-8">

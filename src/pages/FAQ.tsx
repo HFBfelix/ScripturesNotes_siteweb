@@ -168,7 +168,7 @@ export default function FAQ() {
           <h3 className="font-black text-[#1C1C1E] uppercase italic mb-2">Vous avez une autre question ?</h3>
           <p className="text-gray-500 text-sm mb-6 font-medium">Nous vous apporterons une réponse.</p>
           <a 
-            href="mailto:hfentreprises@gmail.com" 
+            href="mailto:contact@scripturesnotes.com" 
             className="inline-flex items-center gap-2 bg-[#1C1C1E] text-white px-8 py-4 rounded-2xl font-black uppercase text-[10px] tracking-widest hover:bg-primary transition-all shadow-xl shadow-gray-200"
           >
             Nous contacter par e-mail

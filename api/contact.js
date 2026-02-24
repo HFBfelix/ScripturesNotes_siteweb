@@ -12,8 +12,8 @@ export default async function handler(req, res) {
     }
   
     // Ici, tu connectes un service d'envoi (comme Resend, gratuit et pro)
-    // Pour l'instant, on simule la réussite vers ton mail hfentreprises@gmail.com
-    console.log(`Envoi du mail de ${email} vers hfentreprises@gmail.com`);
+    // Pour l'instant, on simule la réussite vers ton mail contact@scripturesnotes.com
+    console.log(`Envoi du mail de ${email} vers contact@scripturesnotes.com`);
   
     return res.status(200).json({ success: true });
   }

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Scriptures Notes - Confirmation</title>
+    <style>
+        body { 
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            background-color: #F2F2F7; 
+            margin: 0; 
+            padding: 20px; 
+            text-align: center; 
+        }
+        .logo { 
+            width: 80px; 
+            height: 80px; 
+            border-radius: 18px; 
+            margin-bottom: 24px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+        }
+        h1 { 
+            font-size: 22px; 
+            font-weight: 700; 
+            color: #1C1C1E; 
+            margin: 0 0 8px 0; 
+        }
+        p { 
+            color: #8E8E93; 
+            font-size: 16px; 
+            margin-bottom: 32px; 
+            max-width: 280px; 
+            line-height: 1.4; 
+        }
+        .btn { 
+            display: inline-block; 
+            padding: 18px 36px; 
+            background-color: #2A528A; 
+            color: #FFFFFF !important; 
+            text-decoration: none; 
+            border-radius: 16px; 
+            font-weight: 700; 
+            font-size: 17px; 
+            transition: transform 0.2s; 
+        }
+        .btn:active { 
+            transform: scale(0.96); 
+        }
+    </style>
+</head>
+<body>
+    <img src="https://jzktismidatqkgyxakdf.supabase.co/storage/v1/object/public/assests/ScripturesNotes.png" class="logo" alt="Logo">
+    
+    <div id="content-box">
+        <h1>Presque terminé !</h1>
+        <p>Nous allons vous rediriger vers l'application pour confirmer votre compte.</p>
+        <a id="app-link" href="#" class="btn">Ouvrir Scriptures Notes</a>
+    </div>
+
+    <script>
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            const token = params.get('token_hash');
+            const type = params.get('type') || 'signup';
+
+            const btn = document.getElementById('app-link');
+
+            if (token) {
+                // Construction du lien profond pour Scriptures Notes
+                const deepLink = "scripturesnotes://auth-callback?token=" + token + "&type=" + type;
+                
+                // Mise à jour du bouton
+                btn.href = deepLink;
+
+                // Redirection automatique immédiate
+                window.location.href = deepLink;
+
+                // Sécurité : clic forcé si la redirection auto est bloquée par le navigateur
+                setTimeout(function() {
+                    console.log("Redirection manuelle disponible");
+                }, 2500);
+            } else {
+                document.querySelector('h1').innerText = "Lien non valide";
+                document.querySelector('p').innerText = "Le jeton de sécurité est manquant ou a expiré.";
+                btn.style.display = 'none';
+            }
+        })();
+    </script>
+</body>
+</html>

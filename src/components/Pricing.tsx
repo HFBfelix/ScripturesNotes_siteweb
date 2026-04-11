@@ -50,7 +50,7 @@ export default function Pricing() {
             </div>
           </div>
 
-          {/* CARTE DROITE : PREMIUM (0,99€) */}
+          {/* CARTE DROITE : PREMIUM (2,99€) */}
           <div className="p-10 rounded-[2.5rem] border-2 border-[#FBBF24] bg-[#1E293B]/30 flex flex-col relative">
             <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#FBBF24] text-slate-900 px-6 py-1 rounded-full text-sm font-bold shadow-lg">
               Prochainement
@@ -68,7 +68,7 @@ export default function Pricing() {
 
             <div className="mb-10">
               <div className="flex items-baseline gap-2">
-                <span className="text-6xl font-bold">0,99€</span>
+                <span className="text-6xl font-bold">2,99€</span>
                 <span className="text-slate-400 font-medium italic">/mois TTC</span>
               </div>
             </div>

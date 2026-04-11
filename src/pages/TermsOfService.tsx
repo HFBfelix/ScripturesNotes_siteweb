@@ -29,7 +29,7 @@ export default function TermsOfService() {
             Conditions <span className="text-primary">Générales</span>
           </h1>
           <p className="text-gray-400 font-bold uppercase text-xs tracking-[0.2em]">
-            En vigueur au 21 Janvier 2026
+            En vigueur au 01 avril 2026
           </p>
         </div>
 
@@ -60,7 +60,7 @@ export default function TermsOfService() {
               <CreditCard size={20} className="text-primary" /> 3. Abonnement Premium
             </h2>
             <p className="text-gray-600 leading-relaxed">
-              Le service propose un accès Premium à <strong>0,99€/mois</strong>. Ce tarif permet l'accès aux fonctions avancées (IA illimitée, Jeux débloqués). L'abonnement est sans engagement.
+              Le service propose un accès Premium à <strong>2,99€/mois</strong>. Ce tarif permet l'accès aux fonctions avancées (IA illimitée, Jeux débloqués). L'abonnement est sans engagement.
             </p>
           </section>
 

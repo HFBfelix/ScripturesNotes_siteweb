@@ -57,37 +57,78 @@
     <img src="https://jzktismidatqkgyxakdf.supabase.co/storage/v1/object/public/assests/ScripturesNotes.png" class="logo" alt="Logo">
     
     <div id="content-box">
-        <h1>Presque terminé !</h1>
-        <p>Nous allons vous rediriger vers l'application pour confirmer votre compte.</p>
-        <a id="app-link" href="#" class="btn">Ouvrir Scriptures Notes</a>
+        <h1 id="status-title">Vérification en cours...</h1>
+        <p id="status-desc">Nous validons votre adresse email.</p>
+        <a id="app-link" href="#" class="btn" style="display: none;">Ouvrir Scriptures Notes</a>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
     <script>
-        (function() {
+        (async function() {
             const params = new URLSearchParams(window.location.search);
-            const token = params.get('token_hash');
-            const type = params.get('type') || 'signup';
+            const token  = params.get('token_hash');
+            const type   = params.get('type') || 'signup';
 
-            const btn = document.getElementById('app-link');
+            const title = document.getElementById('status-title');
+            const desc  = document.getElementById('status-desc');
+            const btn   = document.getElementById('app-link');
 
-            if (token) {
-                // Construction du lien profond pour Scriptures Notes
-                const deepLink = "scripturesnotes://auth-callback?token=" + token + "&type=" + type;
-                
-                // Mise à jour du bouton
-                btn.href = deepLink;
+            // Client Supabase — clé anon publique, lecture seule sur auth
+            const supabaseUrl = 'https://jzktismidatqkgyxakdf.supabase.co';
+            const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp6a3Rpc21pZGF0cWtneXhha2RmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTgyODk0NzEsImV4cCI6MjA3Mzg2NTQ3MX0.p2aQ_O-WAyYyEcGBcJ0PqRhq02bYusgzU3bKBp8vn3w';
+            const client = supabase.createClient(supabaseUrl, supabaseAnonKey);
 
-                // Redirection automatique immédiate
+            if (!token) {
+                title.innerText = 'Lien non valide';
+                desc.innerText  = 'Le jeton de sécurité est manquant ou a expiré.';
+                return;
+            }
+
+            try {
+                // 1. On consomme le token_hash pour valider l'email dans Supabase.
+                //    verifyOtp() marque l'adresse comme confirmée en base
+                //    ET retourne une session active (access_token + refresh_token).
+                const { data, error } = await client.auth.verifyOtp({
+                    token_hash: token,
+                    type: type
+                });
+
+                if (error) throw error;
+
+                const session = data && data.session;
+
+                if (!session) {
+                    // verifyOtp a réussi mais sans session (cas edge — type=magiclink expiré)
+                    title.innerText = 'Email vérifié';
+                    desc.innerText  = 'Votre adresse a été confirmée. Ouvrez l\'application pour continuer.';
+                    btn.href        = 'scripturesnotes://auth-callback';
+                    btn.style.display = 'inline-block';
+                    return;
+                }
+
+                // 2. On construit le deep link AVEC les tokens de session.
+                //    _layout.tsx intercepte ce lien et appelle supabase.auth.setSession(),
+                //    ce qui connecte l'utilisateur directement dans l'app sans qu'il
+                //    ait à retaper son mot de passe.
+                const deepLink = 'scripturesnotes://auth-callback'
+                    + '?access_token='  + encodeURIComponent(session.access_token)
+                    + '&refresh_token=' + encodeURIComponent(session.refresh_token)
+                    + '&type='          + encodeURIComponent(type);
+
+                title.innerText       = 'Email confirmé !';
+                desc.innerText        = 'Votre compte est activé. Vous allez être redirigé vers l\'application.';
+                btn.href              = deepLink;
+                btn.style.display     = 'inline-block';
+
+                // 3. Tentative de redirection automatique.
+                //    Sur iOS Safari, window.location vers un custom scheme fonctionne
+                //    si l'app est installée. Sinon, le bouton sert de fallback.
                 window.location.href = deepLink;
 
-                // Sécurité : clic forcé si la redirection auto est bloquée par le navigateur
-                setTimeout(function() {
-                    console.log("Redirection manuelle disponible");
-                }, 2500);
-            } else {
-                document.querySelector('h1').innerText = "Lien non valide";
-                document.querySelector('p').innerText = "Le jeton de sécurité est manquant ou a expiré.";
-                btn.style.display = 'none';
+            } catch (err) {
+                console.error('Erreur de validation:', err.message);
+                title.innerText = 'Lien invalide ou expiré';
+                desc.innerText  = 'Ce lien n\'est plus valide. Veuillez recommencer depuis l\'application.';
             }
         })();
     </script>

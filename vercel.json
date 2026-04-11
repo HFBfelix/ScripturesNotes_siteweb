@@ -7,11 +7,11 @@
     },
     {
       "source": "/privacy",
-      "destination": "/privacy.html"
+      "destination": "/pages/privacy.html"
     },
     {
       "source": "/terms",
-      "destination": "/terms.html"
+      "destination": "/pages/terms.html"
     },
     {
       "source": "/(.*)",

@@ -1,17 +1,8 @@
 {
-  "cleanUrls": true,
   "rewrites": [
     {
       "source": "/confirm",
       "destination": "/confirm.html"
-    },
-    {
-      "source": "/privacy",
-      "destination": "/pages/privacy.html"
-    },
-    {
-      "source": "/terms",
-      "destination": "/pages/terms.html"
     },
     {
       "source": "/(.*)",
